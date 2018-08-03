@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="item of swiperList" :key="item.id">
+    <swiper :options="swiperOption" v-if="showSwiper">
+      <swiper-slide v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -18,18 +18,16 @@ export default {
         pagination: '.swiper-pagination',
         loop: true,
         autoplay: 3000
-      },
-      swiperList: [{
-        id: '1001',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1807/40/1d7be74ed1584002.jpg_750x200_c41233c9.jpg'
-      }, {
-        id: '1002',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1807/c6/44fce1467be17702.jpg_750x200_406f5fc3.jpg'
-      }, {
-        id: '1003',
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1807/66/e5a5cec881702f02.jpg_750x200_67bb5691.jpg'
-      }]
+      }
     }
+  },
+  computed: {
+    showSwiper () {
+      return this.list.length
+    }
+  },
+  props: {
+    list: Array
   }
 }
 </script>
@@ -39,7 +37,7 @@ export default {
     height: 0;
     width: 100%;
     overflow: hidden;
-    padding-bottom: 26%;
+    padding-bottom: 31.25%;
     background :#EEE;
     .swiper-pagination-bullet-active{
       background: #FFF;
